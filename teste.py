@@ -79,7 +79,7 @@ model.add(keras.layers.Conv1D(128, kernel_size=6, activation='tanh'))
 model.add(keras.layers.MaxPooling1D(pool_size=2))
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(256, activation='relu'))
-model.add(keras.layers.Dropout(0.2))  # Adiciona dropout
+model.add(keras.layers.Dropout(0.2))  #dropout
 model.add(keras.layers.Dense(len(label_encoder.classes_), activation='softmax'))
 
 
@@ -95,7 +95,7 @@ X_train = X_train.transpose(0, 1, 2)
 X_val = X_val.transpose(0, 1, 2)
 
 # treina o modelo
-model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=20, batch_size=32)
+model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=15, batch_size=32)
 
 # pre teste
 X_test = np.stack(test_data['Features']).reshape(test_data.shape[0], max_features_length, 13)
