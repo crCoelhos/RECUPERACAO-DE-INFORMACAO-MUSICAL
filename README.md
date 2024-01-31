@@ -42,5 +42,4 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina:
     ```shell
     python nome.py
     ```
-
-Isso é tudo! Agora você pode executar o projeto Python instalando as dependências com `pip install` e executando o arquivo `nome.py`.
+Agora você pode executar o projeto instalando outras dependências com `pip install` e executando o arquivo `nome.py`.
