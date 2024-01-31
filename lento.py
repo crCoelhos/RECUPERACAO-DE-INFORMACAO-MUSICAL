@@ -33,8 +33,7 @@ max_features_length = 0
 def extract_features(file_path, target_duration=15.0):
     global max_features_length
     y, sr = librosa.load(file_path, duration=target_duration)
-    
-    # Reamostragem para uma taxa de amostragem mais baixa
+
     y = librosa.effects.preemphasis(y)
     
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
