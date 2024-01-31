@@ -61,7 +61,7 @@ test_data['Features'] = test_data['Features'].map(lambda x: pad_features(x, max_
 
 # treino -> validação
 X_train, X_val, y_train, y_val = train_test_split(
-    np.stack(train_data['Features']), train_data['Class'], test_size=0.2, random_state=42
+    np.stack(train_data['Features']), train_data['Class'], test_size=0.2
 )
 
 # verifica o formato atual de X_train
@@ -95,7 +95,7 @@ X_train = X_train.transpose(0, 1, 2)
 X_val = X_val.transpose(0, 1, 2)
 
 # treina o modelo
-model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=15, batch_size=32)
+model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=5, batch_size=32)
 
 # pre teste
 X_test = np.stack(test_data['Features']).reshape(test_data.shape[0], max_features_length, 13)
@@ -152,11 +152,14 @@ def extract_and_pad_features(file_path, max_features_length):
     mfccs_padded = pad_features(mfccs, max_features_length)
     return mfccs_padded
 
-new_audio_path = "data/Test_submission/acoustic-guitar-logo-13084.wav" #erro (violino)
+# new_audio_path = "data/demo/desejodemenina1-vida-vazia.wav" #MÚSICA BOA
+# new_audio_path = "data/demo/trans-la.wav" #NOTA LA
+# new_audio_path = "data/Test_submission/rock-drum-loop-85371.wav" #erro (violino)
+# new_audio_path = "data/Test_submission/acoustic-guitar-logo-13084.wav" #erro (violino)
 # new_audio_path = "data/Test_submission/guitar-chords-70663.wav" #erro (bateria)
 # new_audio_path = "data/Test_submission/wingrandpiano-96338.wav" #erro (bateria)
 # new_audio_path = "data/Test_submission/hip-hop-drum-loop-22-33572.wav" #ok
-# new_audio_path = "data/Test_submission/Sad-Violin-Slow-K-www.fesliyanstudios.com.wav" #ok
+new_audio_path = "data/Test_submission/Sad-Violin-Slow-K-www.fesliyanstudios.com.wav" #ok
 
 
 
@@ -182,5 +185,5 @@ predicted_class_original = label_encoder.inverse_transform([predicted_class])[0]
 print(f"O {new_audio_path} é previsto como: {predicted_class_original}")
 
 
-# plot_spectrogram(new_audio_path)
+plot_spectrogram(new_audio_path)
 plot_audio_features(new_audio_path, feature_type='waveform', duration=2.97)
